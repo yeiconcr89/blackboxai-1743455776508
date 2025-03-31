@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="checkout">Pagar - TechShop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="translations.js"></script>
+    <script src="script.js" defer></script>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #64748b;
+            --background: #ffffff;
+            --text: #1e293b;
+        }
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --secondary: #94a3b8;
+            --background: #1e293b;
+            --text: #f8fafc;
+        }
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        .card-input {
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='16' viewBox='0 0 20 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 2C0 0.89543 0.89543 0 2 0H18C19.1046 0 20 0.89543 20 2V14C20 15.1046 19.1046 16 18 16H2C0.89543 16 0 15.1046 0 14V2Z' fill='%23E5E7EB'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-2xl font-bold" data-i18n="appTitle">TechShop</h1>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:underline" data-i18n="home">Inicio</a>
+                    <a href="products.html" class="hover:underline" data-i18n="products">Productos</a>
+                    <a href="#" class="hover:underline" data-i18n="about">Nosotros</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-blue-700">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageToggle" class="p-2 rounded-full hover:bg-blue-700">
+                    <span>ES</span>
+                </button>
+                <a href="cart.html" class="relative p-2 rounded-full hover:bg-blue-700">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold mb-8" data-i18n="checkout">Pagar</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-i18n="shippingInfo">Información de envío</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block mb-1" data-i18n="fullName">Nombre completo</label>
+                            <input type="text" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                        <div>
+                            <label class="block mb-1" data-i18n="address">Dirección</label>
+                            <input type="text" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block mb-1" data-i18n="city">Ciudad</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-2">
+                            </div>
+                            <div>
+                                <label class="block mb-1" data-i18n="zipCode">Código postal</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-2">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block mb-1" data-i18n="country">País</label>
+                            <select class="w-full border rounded-lg px-4 py-2">
+                                <option>México</option>
+                                <option>Estados Unidos</option>
+                                <option>España</option>
+                                <option>Colombia</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4" data-i18n="paymentInfo">Información de pago</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block mb-1" data-i18n="cardNumber">Número de tarjeta</label>
+                            <input type="text" class="w-full border rounded-lg px-4 py-2 card-input" placeholder="4242 4242 4242 4242">
+                        </div>
+                        <div>
+                            <label class="block mb-1" data-i18n="nameOnCard">Nombre en la tarjeta</label>
+                            <input type="text" class="w-full border rounded-lg px-4 py-2">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block mb-1" data-i18n="expiryDate">Fecha de expiración</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-2" placeholder="MM/AA">
+                            </div>
+                            <div>
+                                <label class="block mb-1" data-i18n="cvv">CVV</label>
+                                <input type="text" class="w-full border rounded-lg px-4 py-2" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-white dark:bg-gray-700 rounded-lg shadow-md p-6">
+                        <h3 class="text-lg font-semibold mb-4" data-i18n="orderSummary">Resumen del pedido</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span data-i18n="subtotal">Subtotal</span>
+                                <span id="subtotal">$0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span data-i18n="shipping">Envío</span>
+                                <span>$0</span>
+                            </div>
+                            <div class="border-t border-gray-200 dark:border-gray-600 my-3"></div>
+                            <div class="flex justify-between font-bold text-lg">
+                                <span data-i18n="total">Total</span>
+                                <span id="total">$0</span>
+                            </div>
+                        </div>
+                        <button onclick="processPayment()" class="mt-6 w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition" data-i18n="payNow">Pagar ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4" data-i18n="contact">Contacto</h3>
+                    <p data-i18n="email">Email: info@techshop.com</p>
+                    <p data-i18n="phone">Teléfono: +1 234 567 890</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="links">Enlaces</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline" data-i18n="terms">Términos y condiciones</a></li>
+                        <li><a href="#" class="hover:underline" data-i18n="privacy">Política de privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p data-i18n="copyright">© 2023 TechShop. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-check text-green-600 dark:text-green-300 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2" data-i18n="orderSuccess">¡Orden completada con éxito!</h3>
+                <p class="mb-6" data-i18n="orderSuccessMessage">Gracias por tu compra. Hemos enviado un correo con los detalles de tu pedido.</p>
+                <a href="index.html" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition" data-i18n="backToHome">Volver al inicio</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+            });
+            
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${subtotal.toFixed(2)}`;
+        });
+
+        function processPayment() {
+            // In a real app, this would call a payment API
+            const successModal = document.getElementById('successModal');
+            successModal.classList.remove('hidden');
+            
+            // Clear cart after successful payment
+            localStorage.setItem('cart', JSON.stringify([]));
+            updateCartCount();
+        }
+    </script>
+</body>
+</html>
