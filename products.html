@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - TechShop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+    <script src="product-filter.js"></script>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #64748b;
+            --background: #ffffff;
+            --text: #1e293b;
+        }
+        [data-theme="dark"] {
+            --primary: #6366f1;
+            --secondary: #94a3b8;
+            --background: #1e293b;
+            --text: #f8fafc;
+        }
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="bg-indigo-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-2xl font-bold">TechShop</h1>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:underline">Inicio</a>
+                    <a href="products.html" class="hover:underline font-bold">Productos</a>
+                    <a href="#" class="hover:underline">Nosotros</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-indigo-600">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageToggle" class="p-2 rounded-full hover:bg-indigo-600">
+                    <span>ES</span>
+                </button>
+                <a href="cart.html" class="relative p-2 rounded-full hover:bg-indigo-600">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <h2 class="text-2xl font-bold">Productos</h2>
+            <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Buscar..." 
+                           class="w-full pl-10 pr-4 py-2 border rounded-lg"
+                           id="searchInput">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <div class="flex gap-2">
+                    <select class="border rounded-lg px-4 py-2" id="categoryFilter">
+                        <option value="">Todas las categorías</option>
+                        <option value="cpu">Procesadores</option>
+                        <option value="gpu">Tarjetas gráficas</option>
+                        <option value="ram">Memorias RAM</option>
+                        <option value="storage">Almacenamiento</option>
+                    </select>
+                    <select class="border rounded-lg px-4 py-2" id="priceFilter">
+                        <option value="">Todos los precios</option>
+                        <option value="0-100">$0 - $100</option>
+                        <option value="100-300">$100 - $300</option>
+                        <option value="300-500">$300 - $500</option>
+                        <option value="500+">$500+</option>
+                    </select>
+                    <button id="filterBtn" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
+                        <i class="fas fa-filter mr-2"></i>
+                        Filtrar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productsGrid">
+            <!-- Products will be loaded via product-filter.js -->
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">Contacto</h3>
+                    <p>Email: info@techshop.com</p>
+                    <p>Teléfono: +1 234 567 890</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Enlaces</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline">Términos y condiciones</a></li>
+                        <li><a href="#" class="hover:underline">Política de privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p>© 2023 TechShop. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
