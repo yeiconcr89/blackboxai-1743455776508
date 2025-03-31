@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechShop - Tienda de Tecnología</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="translations.js"></script>
+    <script src="script.js" defer></script>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #64748b;
+            --background: #ffffff;
+            --text: #1e293b;
+        }
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --secondary: #94a3b8;
+            --background: #1e293b;
+            --text: #f8fafc;
+        }
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-2xl font-bold" data-i18n="appTitle">TechShop</h1>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:underline" data-i18n="home">Inicio</a>
+                    <a href="products.html" class="hover:underline" data-i18n="products">Productos</a>
+                    <a href="#" class="hover:underline" data-i18n="about">Nosotros</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-blue-700">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="languageToggle" class="p-2 rounded-full hover:bg-blue-700">
+                    <span>ES</span>
+                </button>
+                <a href="cart.html" class="relative p-2 rounded-full hover:bg-blue-700">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-700 rounded-xl p-8 text-white">
+                <h2 class="text-3xl font-bold mb-4" data-i18n="heroTitle">Los mejores componentes de computadora</h2>
+                <p class="text-xl mb-6" data-i18n="heroSubtitle">Encuentra todo lo que necesitas para armar tu PC ideal</p>
+                <a href="products.html" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition" data-i18n="shopNow">Comprar ahora</a>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold mb-6" data-i18n="featuredProducts">Productos destacados</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Product cards will be loaded via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4" data-i18n="contact">Contacto</h3>
+                    <p data-i18n="email">Email: info@techshop.com</p>
+                    <p data-i18n="phone">Teléfono: +57 3172989227</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4" data-i18n="links">Enlaces</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline" data-i18n="terms">Términos y condiciones</a></li>
+                        <li><a href="#" class="hover:underline" data-i18n="privacy">Política de privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p data-i18n="copyright">© 2023 TechShop. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
